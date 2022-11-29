@@ -11,5 +11,3 @@ fn main() {
         Err(e) => eprintln!("Error: {e}"),
     }
 }
-
-
