@@ -7,7 +7,7 @@ pub(crate) fn run() -> Result<(), String> {
 
 
 fn request_data() -> Result<Value, String> {
-    let request_resp = attohttpc::get("https://www.reddit.com/r/wallpaper/top/.json?t=week").send();
+    let request_resp = attohttpc::get("https://www.reddit.com/r/wallpaper/top/.json?t=day").send();
 
 
     match request_resp {
@@ -34,11 +34,10 @@ fn parse_data(data: Value) -> Result<Vec<Value>, String> {
 }
 
 fn get_random_picture_url(posts: Vec<Value>) -> Result<String, String> {
-    let post_length = posts.len();
     let mut img_url: &str = "";
 
     for i in 0..100 {
-        let post_index = rand::thread_rng().gen_range(0..post_length);
+        let post_index = rand::thread_rng().gen_range(0..10);
         let url = posts.get(post_index).ok_or("Post on index does not exist".to_string())?
             .get("data").ok_or("Could not get data from post".to_string())?
             .get("url").ok_or("Could not get url from post".to_string())?
