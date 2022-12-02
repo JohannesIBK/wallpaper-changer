@@ -37,7 +37,7 @@ fn get_random_picture_url(posts: Vec<Value>) -> Result<String, String> {
     let mut img_url: &str = "";
 
     for i in 0..100 {
-        let post_index = rand::thread_rng().gen_range(0..10);
+        let post_index = rand::thread_rng().gen_range(0..3);
         let url = posts.get(post_index).ok_or("Post on index does not exist".to_string())?
             .get("data").ok_or("Could not get data from post".to_string())?
             .get("url").ok_or("Could not get url from post".to_string())?
